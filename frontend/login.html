@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness & Wellness Tracker - Login</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" name="userid" placeholder="User ID" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div id="message"></div>
+        <div id="userInfo" style="display: none;">
+            <h2>User Information</h2>
+            <p><strong>User ID:</strong> <span id="userID"></span></p>
+            <p><strong>Name:</strong> <span id="userName"></span></p>
+            <p><strong>Age:</strong> <span id="userAge"></span></p>
+            <p><strong>Gender:</strong> <span id="userGender"></span></p>
+            <p><strong>Height:</strong> <span id="userHeight"></span></p>
+            <p><strong>Weight:</strong> <span id="userWeight"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            fetch('../backend/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message && data.message === 'Login successful') {
+                    document.getElementById('message').innerText = data.message;
+                    document.getElementById('userInfo').style.display = 'block';
+                    document.getElementById('userID').innerText = data.user.UserID;
+                    document.getElementById('userName').innerText = data.user.Name;
+                    document.getElementById('userAge').innerText = data.user.Age;
+                    document.getElementById('userGender').innerText = data.user.Gender;
+                    document.getElementById('userHeight').innerText = data.user.Height;
+                    document.getElementById('userWeight').innerText = data.user.Weight;
+                } else {
+                    document.getElementById('message').innerHTML = "Error: " + data.error;
+                    document.getElementById('userInfo').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                document.getElementById('message').innerHTML = "Fetch error: " + error;
+            });
+        });
+    </script>
+</body>
+</html>
