@@ -5,6 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             if (data.user) {
                 document.getElementById('userName').innerText = data.user.Name;
+                // Populate other user fields if needed
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('name').innerText = data.user.Name;
+                document.getElementById('userID').innerText = data.user.UserID;
+                document.getElementById('userName').innerText = data.user.Name;
+                document.getElementById('userAge').innerText = data.user.Age;
+                document.getElementById('userGender').innerText = data.user.Gender;
+                document.getElementById('userHeight').innerText = data.user.Height;
+                document.getElementById('userWeight').innerText = data.user.Weight;
             }
         })
         .catch(error => console.error('Error fetching user info:', error));
