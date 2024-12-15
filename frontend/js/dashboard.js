@@ -34,6 +34,37 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching workout types:', error));
 
+     // fetch logged sessions
+    fetch('../backend/get_logged_sessions.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.sessions) {
+                displaySessions(data.sessions);
+            }
+        })
+        .catch(error => console.error('Error fetching sessions:', error));
+
+    // fetch logged meals
+    fetch('../backend/get_logged_meals.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.meals) {
+                displayMeals(data.meals);
+            }
+        })
+        .catch(error => console.error('Error fetching meals:', error));
+        
+    // fetch  net caloric intake / day
+    fetch('../backend/get_daily_net_calories.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.netCalories !== undefined) {
+            document.getElementById('calories-consumed').innerText = data.totalConsumed;
+            document.getElementById('calories-burned').innerText = data.totalBurned;
+            document.getElementById('net-calories').innerText = data.netCalories;
+        }
+    })
+.catch(error => console.error('Error fetching daily net calories:', error));
     // listen to tab links
     var tabLinks = document.querySelectorAll('.tab-link');
     tabLinks.forEach(function(link) {
@@ -104,4 +135,24 @@ function handleSubmit(url) {
             displayMessage("Fetch error: " + error);
         });
     };
+}
+
+function displaySessions(sessions) {
+    var sessionList = document.createElement('ul');
+    sessions.forEach(session => {
+        var listItem = document.createElement('li');
+        listItem.innerText = `${session.Date}: ${session.ExerciseType}, Duration: ${session.Duration} mins, Calories Burned: ${session.TotalCaloriesBurned.toFixed(2)}`;
+        sessionList.appendChild(listItem);
+    });
+    document.getElementById('log-sessions-tab').appendChild(sessionList);
+}
+
+function displayMeals(meals) {
+    var mealList = document.createElement('ul');
+    meals.forEach(meal => {
+        var listItem = document.createElement('li');
+        listItem.innerText = `${meal.Date}: ${meal.Food}, Calories: ${meal.Calories}`;
+        mealList.appendChild(listItem);
+    });
+    document.getElementById('log-meals-tab').appendChild(mealList);
 }
