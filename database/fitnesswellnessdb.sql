@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 5, 2024 at 04:19 AM
+-- Generation Time: Dec 5, 2024 at 08:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `meal` (
-  `MealID` int(11) NOT NULL,
+  `MealID` int(1) NOT NULL,
   `Date` date NOT NULL,
   `Food` varchar(100) NOT NULL,
   `Calories` int(11) NOT NULL CHECK (`Calories` > 0),
@@ -40,8 +40,9 @@ CREATE TABLE `meal` (
 --
 
 INSERT INTO `meal` (`MealID`, `Date`, `Food`, `Calories`, `UserID`) VALUES
-(1, '2024-11-26', 'Chicken Salad', 300, 1),
-(11, '2024-11-06', 'Turkey Sandwich', 400, 1);
+(1, '2024-12-04', 'Chicken Salad', 450, 14),
+(2, '2024-12-03', 'Salmon', 200, 14),
+(3, '2024-12-03', 'Broccoli', 20, 14);
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `W
 (11, '81dc9bdb52d04dc20036dbd8313ed055', 'Michael Sepsey', 99, 'Male', 200.00, 100.00),
 (12, '751a05a5866f165678bec1052684cd46', 'John Doe', 25, 'Male', 175.50, 70.00),
 (13, 'd8578edf8458ce06fbc5bb76a58c5ca4', 'Michelle Ramsey', 34, 'Female', 153.00, 67.00),
-(14, '8fd82b8864d71ed7fa12b59e6e34cd1c', 'Gordon Ramsey', 50, 'Male', 192.00, 87.00);
+(14, '8fd82b8864d71ed7fa12b59e6e34cd1c', 'Gordon Ramsey', 44, 'Male', -2.00, 60.00);
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,7 @@ INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `W
 --
 
 CREATE TABLE `sessions` (
-  `SessionID` int(11) NOT NULL,
+  `SessionID` int(1) NOT NULL,
   `Date` date NOT NULL,
   `UserID` int(11) NOT NULL,
   `TypeID` int(11) NOT NULL,
@@ -98,7 +99,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`SessionID`, `Date`, `UserID`, `TypeID`, `Duration`) VALUES
-(1, '2024-11-17', 1, 1, 30.00);
+(1, '2024-12-11', 14, 3, 40.00);
 
 -- --------------------------------------------------------
 
@@ -165,10 +166,22 @@ ALTER TABLE `workouttype`
 --
 
 --
+-- AUTO_INCREMENT for table `meal`
+--
+ALTER TABLE `meal`
+  MODIFY `MealID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `oneuser`
 --
 ALTER TABLE `oneuser`
   MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `sessions`
+--
+ALTER TABLE `sessions`
+  MODIFY `SessionID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
