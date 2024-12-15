@@ -9,6 +9,7 @@
     --subtle-gray: #8E8E93;
     --success-color: #30D158;
     --error-color: #ff3a308b;
+
     --content-min-height: 400px;    /* Ensures consistent content height */
 }
 
@@ -42,6 +43,7 @@ body {
     flex-direction: column;
     min-height: 90vh;
     transition: all 0.3s ease;
+    overflow: hidden; /* Ensure no overflow */
 }
 
 .tabs {
@@ -50,6 +52,7 @@ body {
     background-color: var(--card-background);
     border-bottom: 1px solid var(--border-color);
     padding: 0.5rem 0;
+    z-index: 1; /* Ensure tabs stay on top */
 }
 
 .tab-link {
@@ -145,6 +148,7 @@ button:active {
 
 .logout-btn:hover {
     background-color: #d32f2fdb;
+
 }
 
 #message, #messageMeals, #messageSessions, #messagePersonal {

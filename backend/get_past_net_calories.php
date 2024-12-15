@@ -14,7 +14,8 @@ $response = [];
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
     
-    // Get past net caloric data
+    //  past net caloric data, excluding today
+    $today = date('Y-m-d');
     $query = "
         SELECT s.Date, 
                (SELECT SUM(Calories) FROM meal WHERE UserID = '$userid' AND Date = s.Date) AS totalConsumed,
@@ -22,20 +23,20 @@ if (isset($_SESSION['user_id'])) {
         FROM sessions s 
         JOIN workouttype w ON s.TypeID = w.TypeID 
         JOIN oneuser o ON s.UserID = o.UserID
-        WHERE s.UserID = '$userid'
+        WHERE s.UserID = '$userid' AND s.Date < '$today'
         GROUP BY s.Date
         ORDER BY s.Date DESC
     ";
 
-    error_log("Executing query: " . $query);
+    error_log("Executing query: " . $query); //For debugging
 
     if ($result = $mysqli->query($query)) {
         $netCalories = [];
         while ($row = $result->fetch_assoc()) {
-            $totalConsumed = $row['totalConsumed'] ? (float)$row['totalConsumed'] : 0; // Explicitly cast to float
-            $totalBurned = $row['totalBurned'] ? (float)$row['totalBurned'] : 0; // Explicitly cast to float
+            $totalConsumed = $row['totalConsumed'] ? (float)$row['totalConsumed'] : 0; //  cast to float
+            $totalBurned = $row['totalBurned'] ? (float)$row['totalBurned'] : 0; //  cast to float
 
-            error_log("Date: " . $row['Date'] . " - Consumed: " . $totalConsumed . " - Burned: " . $totalBurned);
+            error_log("Date: " . $row['Date'] . " - Consumed: " . $totalConsumed . " - Burned: " . $totalBurned); // For debugging
 
             $netCalories[] = [
                 'Date' => $row['Date'],
