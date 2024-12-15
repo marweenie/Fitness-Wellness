@@ -1,5 +1,5 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +12,11 @@ body {
     background-color: white;
     padding: 30px;
     border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     width: 300px;
 }
 
-#loginForm, #registerForm {
+#loginForm, #signupForm {
     display: flex;
     flex-direction: column;
 }
@@ -49,7 +50,22 @@ button:hover {
     margin-top: 10px;
     text-align: left;
 }
-
 .registerlink {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
     text-align: center;
+    margin-top: 20px;
+}
+
+.registerlink a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.registerlink a:hover {
+    color: #45a049;
+    text-decoration: underline;
 }

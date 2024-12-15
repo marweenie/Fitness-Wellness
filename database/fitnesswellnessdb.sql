@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 4, 2024 at 10:57 PM
+-- Generation Time: Dec 5, 2024 at 04:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,20 +41,7 @@ CREATE TABLE `meal` (
 
 INSERT INTO `meal` (`MealID`, `Date`, `Food`, `Calories`, `UserID`) VALUES
 (1, '2024-11-26', 'Chicken Salad', 300, 1),
-(2, '2024-11-26', 'Pasta', 500, 2),
-(3, '2024-11-26', 'Grilled Fish', 350, 3),
-(4, '2024-11-02', 'Steak', 500, 4),
-(5, '2024-11-03', 'Fruit Smoothie', 200, 5),
-(6, '2024-11-03', 'Vegetable Stir-Fry', 300, 6),
-(7, '2024-11-04', 'Grilled Salmon', 350, 7),
-(8, '2024-11-04', 'Chicken Burger', 250, 8),
-(9, '2024-11-05', 'Beef Burger', 450, 9),
-(10, '2024-11-05', 'Vegan Wrap', 350, 10),
-(11, '2024-11-06', 'Turkey Sandwich', 400, 1),
-(12, '2024-11-06', 'Eggplant Parmesan', 500, 2),
-(13, '2024-11-07', 'Quinoa Bowl', 350, 3),
-(14, '2024-11-07', 'Steak and Potatoes', 600, 4),
-(15, '2024-11-08', 'Caesar Salad', 300, 5);
+(11, '2024-11-06', 'Turkey Sandwich', 400, 1);
 
 -- --------------------------------------------------------
 
@@ -77,7 +64,7 @@ CREATE TABLE `oneuser` (
 --
 
 INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `Weight`) VALUES
-(1, '751a05a5866f165678bec1052684cd46', 'John Doe', 25, 'Male', 175.50, 70.00),
+(1, '39c5e84d7380e098bdce5e08cd28b7d6', 'Adam Rudolph', 18, 'Male', 190.00, 90.00),
 (2, '4cce760cab5f8766408e85ed9737c9a9', 'Jane Smith', 30, 'Female', 160.20, 55.00),
 (3, '81dc9bdb52d04dc20036dbd8313ed055', 'Sarah Connor', 40, 'Female', 165.70, 65.00),
 (4, 'c3caecd497691d2ee3abe3cd427c1948', 'Nathan Oaks', 30, 'Male', 185.30, 90.00),
@@ -86,7 +73,11 @@ INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `W
 (7, '92ec16a714838e4b6f186ec6acdc5da7', 'David Wilson', 33, 'Male', 175.00, 90.00),
 (8, '165894661c333dbbaa15c1cebc7c5331', 'Olivia Martinez', 27, 'Female', 160.00, 50.00),
 (9, 'e846fb8a4f365ca8e84393d4f34e1b07', 'Daniel Garcia', 38, 'Male', 182.50, 78.00),
-(10, '671aa2b583078eadd5feb20f55476313', 'Sophia Clark', 26, 'Female', 165.50, 63.00);
+(10, '671aa2b583078eadd5feb20f55476313', 'Sophia Clark', 26, 'Female', 165.50, 63.00),
+(11, '81dc9bdb52d04dc20036dbd8313ed055', 'Michael Sepsey', 99, 'Male', 200.00, 100.00),
+(12, '751a05a5866f165678bec1052684cd46', 'John Doe', 25, 'Male', 175.50, 70.00),
+(13, 'd8578edf8458ce06fbc5bb76a58c5ca4', 'Michelle Ramsey', 34, 'Female', 153.00, 67.00),
+(14, '8fd82b8864d71ed7fa12b59e6e34cd1c', 'Gordon Ramsey', 50, 'Male', 192.00, 87.00);
 
 -- --------------------------------------------------------
 
@@ -107,20 +98,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`SessionID`, `Date`, `UserID`, `TypeID`, `Duration`) VALUES
-(1, '2024-11-17', 1, 1, 30.00),
-(2, '2024-11-19', 2, 2, 45.00),
-(3, '2024-11-19', 3, 3, 60.00),
-(4, '2024-11-20', 3, 5, 20.00),
-(5, '2024-11-21', 2, 6, 15.00),
-(6, '2024-11-21', 6, 5, 55.00),
-(7, '2024-11-21', 10, 10, 105.00),
-(8, '2024-11-21', 9, 4, 35.00),
-(9, '2024-11-22', 10, 5, 90.00),
-(10, '2024-11-22', 7, 8, 45.00),
-(11, '2024-11-22', 5, 2, 50.00),
-(12, '2024-11-23', 6, 1, 40.00),
-(13, '2024-11-24', 7, 8, 70.00),
-(14, '2024-11-24', 8, 10, 50.00);
+(1, '2024-11-17', 1, 1, 30.00);
 
 -- --------------------------------------------------------
 
@@ -160,7 +138,7 @@ INSERT INTO `workouttype` (`TypeID`, `ExerciseType`, `MET`, `ExerciseMultiplier`
 --
 ALTER TABLE `meal`
   ADD PRIMARY KEY (`MealID`),
-  ADD KEY `UserID` (`UserID`);
+  ADD KEY `meal_ibfk_1` (`UserID`);
 
 --
 -- Indexes for table `oneuser`
@@ -173,14 +151,24 @@ ALTER TABLE `oneuser`
 --
 ALTER TABLE `sessions`
   ADD PRIMARY KEY (`SessionID`),
-  ADD KEY `UserID` (`UserID`),
-  ADD KEY `TypeID` (`TypeID`);
+  ADD KEY `TypeID` (`TypeID`),
+  ADD KEY `sessions_ibfk_1` (`UserID`);
 
 --
 -- Indexes for table `workouttype`
 --
 ALTER TABLE `workouttype`
   ADD PRIMARY KEY (`TypeID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `oneuser`
+--
+ALTER TABLE `oneuser`
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
