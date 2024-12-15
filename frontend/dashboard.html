@@ -13,6 +13,7 @@
             <a href="#" class="tab-link" data-target="log-meals-tab">Log Meals</a>
             <a href="#" class="tab-link" data-target="log-sessions-tab">Log Sessions</a>
             <a href="#" class="tab-link" data-target="user-info-tab">User Info</a>
+            <a href="#" class="tab-link" data-target="logout-tab">Logout</a>
         </nav>
 
          <div class="tab-content">
@@ -28,7 +29,6 @@
                 <br>
                 <h3>Past Net Caloric Intakes</h3>
                 <div id="past-calories-list"></div>
-                <button type="button" class="logout-btn">Logout</button>
             </div>
 
             <div class="tab-pane" id="log-meals-tab">
@@ -39,7 +39,6 @@
                     <input type="text" name="food" placeholder="Food" required>
                     <input type="number" name="calories" placeholder="Calories" required>
                     <button type="submit">Log Meal</button>
-                    <button type="button" class="logout-btn">Logout</button>
                 </form>
             </div>
 
@@ -53,7 +52,6 @@
                     </select>
                     <input type="number" name="duration" placeholder="Duration (minutes)" required>
                     <button type="submit">Log Workout</button>
-                    <button type="button" class="logout-btn">Logout</button>
                 </form>
             </div>
 
@@ -83,8 +81,11 @@
                         <input type="number" name="weight" placeholder="Weight (kg)">
                         <button type="submit">Update Weight</button>
                     </form>
-                    <button type="button" class="logout-btn">Logout</button>
                 </div>
+            </div>
+            
+            <div class="tab-pane" id="logout-tab">
+                <button type="button" class="logout-btn">Logout</button>
             </div>
         </div>
     </div>

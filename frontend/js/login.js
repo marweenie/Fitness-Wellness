@@ -30,10 +30,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     });
 });
 
-document.getElementById('loginButton').addEventListener('click', function() {
-    setTimeout(redirectUser, 1000);
-});
-
 function redirectUser() {
     window.location.href = "dashboard.html";
 }
