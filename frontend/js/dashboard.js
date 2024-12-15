@@ -64,7 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('net-calories').innerText = data.netCalories;
         }
     })
-.catch(error => console.error('Error fetching daily net calories:', error));
+    .catch(error => console.error('Error fetching daily net calories:', error));
+
+
+    // fetch  past caloric intake / day
+    fetch('../backend/get_past_net_calories.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.netCalories) {
+            displayPastNetCalories(data.netCalories);
+        }
+    })
+    .catch(error => console.error('Error fetching past net calories:', error));
+
+
     // listen to tab links
     var tabLinks = document.querySelectorAll('.tab-link');
     tabLinks.forEach(function(link) {
@@ -109,30 +122,13 @@ function logout() {
 
 function displayMessage(message) {
     const messageDiv = document.getElementById('message');
-    const messageMealsDiv = document.getElementById('messageMeals');
-    const messageSessionsDiv = document.getElementById('messageSessions');
-    const messagePersonalDiv = document.getElementById('messagePersonal');
-
     messageDiv.classList.remove('message-success', 'message-error');
-    messageMealsDiv.classList.remove('message-success', 'message-error');
-    messageSessionsDiv.classList.remove('message-success', 'message-error');
-    messagePersonalDiv.classList.remove('message-success', 'message-error');
-    
     if (message.startsWith('Error') || message.startsWith('Invalid') || message.includes('error')) {
         messageDiv.classList.add('message-error');
-        messageMealsDiv.classList.add('message-error');
-        messageSessionsDiv.classList.add('message-error');
-        messagePersonalDiv.classList.add('message-error');
     } else {
         messageDiv.classList.add('message-success');
-        messageMealsDiv.classList.add('message-success');
-        messageSessionsDiv.classList.add('message-success');
-        messagePersonalDiv.classList.add('message-success');
     }
     messageDiv.innerText = message;
-    messageMealsDiv.innerText = message;
-    messageSessionsDiv.innerText = message;
-    messagePersonalDiv.innerText = message;
 }
 
 function handleSubmit(url) {
@@ -172,4 +168,27 @@ function displayMeals(meals) {
         mealList.appendChild(listItem);
     });
     document.getElementById('log-meals-tab').appendChild(mealList);
+}
+
+function displayPastNetCalories(netCalories) {
+    if (netCalories.length === 0) {
+        // Handle no net calorie data case
+        console.log('No past net calorie data available.');
+        return;
+    }
+
+    var pastCaloriesList = document.createElement('ul');
+    netCalories.forEach(entry => {
+        var totalBurned = parseFloat(entry.TotalBurned) || 0; // make totalBurned is a number
+        var totalConsumed = parseFloat(entry.TotalConsumed) || 0; // make totalConsumed is a number
+        var netCalories = parseFloat(entry.NetCalories) || 0; // make netCalories is a number
+
+        var listItem = document.createElement('li');
+        listItem.innerText = `${entry.Date}: Consumed: ${totalConsumed} cal, Burned: ${totalBurned.toFixed(2)} cal, Net: ${netCalories.toFixed(2)} cal`;
+        pastCaloriesList.appendChild(listItem);
+    });
+
+    var pastCaloriesDiv = document.getElementById('past-calories-list');
+    pastCaloriesDiv.innerHTML = ''; // Clear any existing content
+    pastCaloriesDiv.appendChild(pastCaloriesList);
 }
