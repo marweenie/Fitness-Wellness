@@ -122,13 +122,29 @@ function logout() {
 
 function displayMessage(message) {
     const messageDiv = document.getElementById('message');
+    const messageMealsDiv = document.getElementById('messageMeals');
+    const messageSessionsDiv = document.getElementById('messageSessions');
+    const messagePersonalDiv = document.getElementById('messagePersonal');
     messageDiv.classList.remove('message-success', 'message-error');
+    messageMealsDiv.classList.remove('message-success', 'message-error');
+    messageSessionsDiv.classList.remove('message-success', 'message-error');
+    messagePersonalDiv.classList.remove('message-success', 'message-error');
+    
     if (message.startsWith('Error') || message.startsWith('Invalid') || message.includes('error')) {
         messageDiv.classList.add('message-error');
+        messageMealsDiv.classList.add('message-error');
+        messageSessionsDiv.classList.add('message-error');
+        messagePersonalDiv.classList.add('message-error');
     } else {
         messageDiv.classList.add('message-success');
+        messageMealsDiv.classList.add('message-success');
+        messageSessionsDiv.classList.add('message-success');
+        messagePersonalDiv.classList.add('message-success');
     }
     messageDiv.innerText = message;
+    messageMealsDiv.innerText = message;
+    messageSessionsDiv.innerText = message;
+    messagePersonalDiv.innerText = message;
 }
 
 function handleSubmit(url) {
