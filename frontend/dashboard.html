@@ -19,13 +19,18 @@
             <div class="tab-pane active" id="home-tab">
                 <h2>Welcome, <span id="userName"></span></h2>
                 <div id="message"></div>
+                <p>Please use the tabs above to navigate through the sections.</p>
+                <br>
                 <h3>Daily Net Caloric Intake</h3>
                 <p><strong>Calories Consumed:</strong> <span id="calories-consumed">0</span></p>
                 <p><strong>Calories Burned:</strong> <span id="calories-burned">0</span></p>
                 <p><strong>Net Calories:</strong> <span id="net-calories">0</span></p>
+                <br>
+                <button type="button" class="logout-btn">Logout</button>
             </div>
 
             <div class="tab-pane" id="log-meals-tab">
+                <div id="messageMeals"></div>
                 <h3>Log Meal</h3>
                 <form id="mealForm">
                     <input type="date" name="date" placeholder="Date" required>
@@ -37,6 +42,7 @@
             </div>
 
             <div class="tab-pane" id="log-sessions-tab">
+                <div id="messageSessions"></div>
                 <h3>Log Workout Session</h3>
                 <form id="workoutForm">
                     <input type="date" name="date" placeholder="Date" required>
@@ -50,14 +56,15 @@
             </div>
 
             <div class="tab-pane" id="user-info-tab">
+                <div id="messagePersonal"></div>
                 <section id="userInfo" style="display: none;">
                     <h3>Personal Info</h3>
                     <p><strong>User ID:</strong> <span id="userID"></span></p>
                     <p><strong>Name:</strong> <span id="name"></span></p>
                     <p><strong>Age:</strong> <span id="userAge"></span></p>
                     <p><strong>Gender:</strong> <span id="userGender"></span></p>
-                    <p><strong>Height:</strong> <span id="userHeight"></span></p>
-                    <p><strong>Weight:</strong> <span id="userWeight"></span></p>
+                    <p><strong>Height:</strong> <span id="userHeight"></span> cm</p>
+                    <p><strong>Weight:</strong> <span id="userWeight"></span> kg</p>
                 </section>
                 <br>
                 <h3>Update Personal Info</h3>
@@ -66,13 +73,13 @@
                         <input type="number" name="age" placeholder="Age">
                         <button type="submit">Update Age</button>
                     </form>
-                    <form id="updateWeightForm">
-                        <input type="number" name="weight" placeholder="Weight (kg)">
-                        <button type="submit">Update Weight</button>
-                    </form>
                     <form id="updateHeightForm">
                         <input type="number" name="height" placeholder="Height (cm)">
                         <button type="submit">Update Height</button>
+                    </form>
+                    <form id="updateWeightForm">
+                        <input type="number" name="weight" placeholder="Weight (kg)">
+                        <button type="submit">Update Weight</button>
                     </form>
                     <button type="button" class="logout-btn">Logout</button>
                 </div>
