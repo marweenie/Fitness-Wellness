@@ -26,11 +26,13 @@ $response = [];
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
     $query = "SELECT s.SessionID, s.Date, w.ExerciseType, s.Duration, 
-              ((w.MET * 3.5 * w.ExerciseMultiplier * (o.Weight / 200)) * s.Duration) AS TotalCaloriesBurned
-              FROM sessions s 
-              JOIN workouttype w ON s.TypeID = w.TypeID 
-              JOIN oneuser o ON s.UserID = o.UserID
-              WHERE s.UserID = '$userid'";
+    ((w.MET * 3.5 * w.ExerciseMultiplier * (o.Weight / 200)) * s.Duration) AS TotalCaloriesBurned
+    FROM sessions s 
+    JOIN workouttype w ON s.TypeID = w.TypeID 
+    JOIN oneuser o ON s.UserID = o.UserID
+    WHERE s.UserID = '$userid'
+    ORDER BY s.Date DESC";
+
     $result = $mysqli->query($query);
     
     if ($result && $result->num_rows > 0) {

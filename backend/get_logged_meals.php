@@ -25,7 +25,7 @@ $response = [];
 // verify user session
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
-    $query = "SELECT * FROM meal WHERE UserID = '$userid'";
+    $query = "SELECT * FROM meal WHERE UserID = '$userid' ORDER BY Date DESC"; 
     $result = $mysqli->query($query);
 
     // check query results
