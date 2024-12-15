@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch initial user info and display it
+    // fetch user info to display
     fetch('../backend/get_user_info.php')
         .then(response => response.json())
         .then(data => {
             if (data.user) {
                 document.getElementById('userName').innerText = data.user.Name;
-                // Populate other user fields if needed
             }
         })
         .catch(error => console.error('Error fetching user info:', error));
 
-    // Fetch workout types and populate the dropdown
+    // fetch workout types for the dropdown
     fetch('../backend/get_workout_types.php')
         .then(response => response.json())
         .then(data => {
@@ -25,53 +24,65 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => console.error('Error fetching workout types:', error));
-});
 
-document.getElementById('mealForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // listen to tab links
+    var tabLinks = document.querySelectorAll('.tab-link');
+    tabLinks.forEach(function(link) {
+        link.addEventListener('click', switchTab);
+    });
 
-    var formData = new FormData(this);
+    // listen to logout button(s)
+    var logoutButtons = document.querySelectorAll('.logout-btn');
+    logoutButtons.forEach(function(button) {
+        button.addEventListener('click', logout);
+    });
 
-    fetch('../backend/log_meal.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(text => {
-        displayMessage(text);
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
-        displayMessage("Fetch error: " + error);
+    // listen to form submissions 
+    document.getElementById('mealForm').addEventListener('submit', handleSubmit('../backend/log_meal.php'));
+    document.getElementById('workoutForm').addEventListener('submit', handleSubmit('../backend/log_workout.php'));
+    ['updateAgeForm', 'updateWeightForm', 'updateHeightForm'].forEach(formId => {
+        document.getElementById(formId).addEventListener('submit', handleSubmit('../backend/update_user_info.php'));
     });
 });
 
-document.getElementById('workoutForm').addEventListener('submit', function(e) {
+function switchTab(e) {
     e.preventDefault();
+    var tabLinks = document.querySelectorAll('.tab-link');
+    var tabPanes = document.querySelectorAll('.tab-pane');
 
-    var formData = new FormData(this);
-
-    fetch('../backend/log_workout.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(text => {
-        displayMessage(text);
-    })
-    .catch(error => {
-        console.error('Fetch error:', error);
-        displayMessage("Fetch error: " + error);
+    // remove active class
+    tabLinks.forEach(function(link) {
+        link.classList.remove('active'); // the actual tab
     });
-});
+    tabPanes.forEach(function(pane) { // holds content 
+        pane.classList.remove('active');
+    });
+//put active class
+    this.classList.add('active');
+    var targetPane = document.getElementById(this.getAttribute('data-target'));
+    targetPane.classList.add('active');
+}
 
-['updateAgeForm', 'updateWeightForm', 'updateHeightForm'].forEach(formId => {
-    document.getElementById(formId).addEventListener('submit', function(e) {
+function logout() {
+    window.location.href = '../backend/loggingout.php';
+}
+
+function displayMessage(message) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.classList.remove('message-success', 'message-error');
+    if (message.startsWith('Error') || message.startsWith('Invalid') || message.includes('error')) {
+        messageDiv.classList.add('message-error');
+    } else {
+        messageDiv.classList.add('message-success');
+    }
+    messageDiv.innerText = message;
+}
+
+function handleSubmit(url) {
+    return function(e) {
         e.preventDefault();
-
-        var formData = new FormData(this);
-
-        fetch('../backend/update_user_info.php', {
+        var formData = new FormData(e.target);
+        fetch(url, {
             method: 'POST',
             body: formData
         })
@@ -83,21 +94,5 @@ document.getElementById('workoutForm').addEventListener('submit', function(e) {
             console.error('Fetch error:', error);
             displayMessage("Fetch error: " + error);
         });
-    });
-});
-
-document.getElementById('logoutButton').addEventListener('click', function() {
-    window.location.href = '../backend/loggingout.php';
-    
-});
-
-function displayMessage(message) {
-    const messageDiv = document.getElementById('message');
-    messageDiv.classList.remove('message-success', 'message-error');
-    if (message.startsWith('Error') || message.startsWith('Invalid') || message.includes('error')) {
-        messageDiv.classList.add('message-error');
-    } else {
-        messageDiv.classList.add('message-success');
-    }
-    messageDiv.innerText = message;
+    };
 }

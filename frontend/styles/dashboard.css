@@ -1,46 +1,31 @@
-/* General reset and styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-/* Container for tabs */
-.tab-container {
+.tabs {
     display: flex;
-    border-bottom: 2px solid #ccc;
-    background-color: #f8f9fa;
+    margin-bottom: 20px;
 }
 
-/* Tabs styling */
-.tab {
+.tab-link {
     padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
     border-bottom: none;
-    background-color: #e9ecef;
-    margin-right: 5px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.tab:hover {
-    background-color: #ddd;
-}
-
-.tab.active {
+.tab-link.active {
     background-color: #fff;
     font-weight: bold;
 }
 
-/* Sections container */
-.section-container {
-    display: none;
+.tab-content {
+    border: 1px solid #ddd;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
-/* Show active section */
-.section-container.active {
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
     display: block;
 }

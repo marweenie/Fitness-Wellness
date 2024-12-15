@@ -8,54 +8,64 @@
 </head>
 <body>
     <div class="dashboard-container">
-        <h2>Welcome, <span id="userName"></span></h2>
-        <div id="message"></div>
+        <nav class="tabs">
+            <a href="#" class="tab-link active" data-target="home-tab">Home</a>
+            <a href="#" class="tab-link" data-target="log-meals-tab">Log Meals</a>
+            <a href="#" class="tab-link" data-target="log-sessions-tab">Log Sessions</a>
+            <a href="#" class="tab-link" data-target="user-info-tab">User Info</a>
+        </nav>
 
-        <section>
-            <h3>Log Meal</h3>
-            <form id="mealForm">
-                <input type="date" name="date" placeholder="Date" required>
-                <input type="text" name="food" placeholder="Food" required>
-                <input type="number" name="calories" placeholder="Calories" required>
-                <button type="submit">Log Meal</button>
-            </form>
-        </section>
+        <div class="tab-content">
+            <div class="tab-pane active" id="home-tab">
+                <h2>Welcome, <span id="userName"></span></h2>
+                <div id="message"></div>
+            </div>
 
-        <section>
-            <h3>Log Workout Session</h3>
-            <form id="workoutForm">
-                <input type="date" name="date" placeholder="Date" required>
-                <select name="type_id" required>
-                    <!-- Options will be populated by JS -->
-                </select>
-                <input type="number" name="duration" placeholder="Duration (minutes)" required>
-                <button type="submit">Log Workout</button>
-            </form>
-        </section>
-
-        <section>
-            <h3>Update Personal Info</h3>
-            <div class="personal-info-section">
-                <form id="updateAgeForm">
-                    <input type="number" name="age" placeholder="Age">
-                    <button type="submit">Update Age</button>
-                </form>
-                <form id="updateWeightForm">
-                    <input type="number" name="weight" placeholder="Weight (kg)">
-                    <button type="submit">Update Weight</button>
-                </form>
-                <form id="updateHeightForm">
-                    <input type="number" name="height" placeholder="Height (cm)">
-                    <button type="submit">Update Height</button>
+            <div class="tab-pane" id="log-meals-tab">
+                <h3>Log Meal</h3>
+                <form id="mealForm">
+                    <input type="date" name="date" placeholder="Date" required>
+                    <input type="text" name="food" placeholder="Food" required>
+                    <input type="number" name="calories" placeholder="Calories" required>
+                    <button type="submit">Log Meal</button>
+                    <button type="button" class="logout-btn">Logout</button>
                 </form>
             </div>
-        </section>
-        
-        <section>
-            <button id="logoutButton">Logout</button>
-        </section>
+
+            <div class="tab-pane" id="log-sessions-tab">
+                <h3>Log Workout Session</h3>
+                <form id="workoutForm">
+                    <input type="date" name="date" placeholder="Date" required>
+                    <select name="type_id" required>
+                        <!-- Options given by JS -->
+                    </select>
+                    <input type="number" name="duration" placeholder="Duration (minutes)" required>
+                    <button type="submit">Log Workout</button>
+                    <button type="button" class="logout-btn">Logout</button>
+                </form>
+            </div>
+
+            <div class="tab-pane" id="user-info-tab">
+                <h3>Update Personal Info</h3>
+                <div class="personal-info-section">
+                    <form id="updateAgeForm">
+                        <input type="number" name="age" placeholder="Age">
+                        <button type="submit">Update Age</button>
+                    </form>
+                    <form id="updateWeightForm">
+                        <input type="number" name="weight" placeholder="Weight (kg)">
+                        <button type="submit">Update Weight</button>
+                    </form>
+                    <form id="updateHeightForm">
+                        <input type="number" name="height" placeholder="Height (cm)">
+                        <button type="submit">Update Height</button>
+                    </form>
+                    <button type="button" class="logout-btn">Logout</button>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <script src="js/dashboard.js"></script>
 </body>
 </html>
