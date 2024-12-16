@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 5, 2024 at 09:18 PM
+-- Generation Time: Dec 5, 2024 at 02:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -168,7 +168,10 @@ INSERT INTO `meal` (`MealID`, `Date`, `Food`, `Calories`, `UserID`) VALUES
 (126, '2024-12-15', 'Chicken Wrap', 500, 15),
 (127, '2024-12-15', 'Cereal', 350, 15),
 (128, '2024-12-18', 'Eggs with Toast', 400, 15),
-(129, '2024-12-17', 'Eggs with Ranch', 400, 15);
+(129, '2024-12-17', 'Eggs with Ranch', 400, 15),
+(130, '2024-12-15', 'Shish Kabob', 350, 16),
+(131, '2024-12-15', 'Meat and Eggs', 200, 16),
+(132, '2024-12-15', 'Eggplant', 70, 16);
 
 -- --------------------------------------------------------
 
@@ -193,7 +196,7 @@ CREATE TABLE `oneuser` (
 INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `Weight`) VALUES
 (1, '39c5e84d7380e098bdce5e08cd28b7d6', 'Adam Rudolph', 18, 'Male', 190.00, 90.00),
 (2, '4cce760cab5f8766408e85ed9737c9a9', 'Jane Smith', 30, 'Female', 160.20, 55.00),
-(3, '81dc9bdb52d04dc20036dbd8313ed055', 'Sarah Connor', 40, 'Female', 165.70, 65.00),
+(3, '81dc9bdb52d04dc20036dbd8313ed055', 'Sarah Connor', 41, 'Female', 165.70, 65.00),
 (4, 'c3caecd497691d2ee3abe3cd427c1948', 'Nathan Oaks', 30, 'Male', 185.30, 90.00),
 (5, 'b3e6cd1003ea324236109238a5ec379c', 'Noura Shear', 28, 'Female', 160.40, 55.00),
 (6, 'd062ffaf195e2aa01a511119a2f07f57', 'Jason Scott', 90, 'Male', 220.00, 91.30),
@@ -205,7 +208,12 @@ INSERT INTO `oneuser` (`UserID`, `UserPW`, `Name`, `Age`, `Gender`, `Height`, `W
 (12, '751a05a5866f165678bec1052684cd46', 'John Doe', 25, 'Male', 175.50, 70.00),
 (13, 'd8578edf8458ce06fbc5bb76a58c5ca4', 'Michelle Ramsey', 34, 'Female', 153.00, 67.00),
 (14, '8fd82b8864d71ed7fa12b59e6e34cd1c', 'Gordon Ramsey', 23, 'Male', -2.00, 60.00),
-(15, '39e427721132e62162d3a0a56fe6a526', 'Marwa Chbeir', 90, 'Female', 200.00, 60.00);
+(15, '39e427721132e62162d3a0a56fe6a526', 'Marwa Chbeir', 90, 'Female', 200.00, 60.00),
+(16, '5be9a68073f66a56554e25614e9f1c9a', 'Iman Arnman', 51, 'Female', 162.00, 70.00),
+(17, '9e1e06ec8e02f0a0074f2fcc6b26303b', 'Marwa Test', 90, 'Female', 189.00, 80.00),
+(18, '9e1e06ec8e02f0a0074f2fcc6b26303b', 'Marwa Test', 90, 'Female', 189.00, 80.00),
+(19, '827ccb0eea8a706c4c34a16891f84e7b', 'Justin Porche', 67, 'Male', 210.00, 100.00),
+(20, '9e1e06ec8e02f0a0074f2fcc6b26303b', 'Trevor Adams', 45, 'Male', 198.00, 86.40);
 
 -- --------------------------------------------------------
 
@@ -340,7 +348,9 @@ INSERT INTO `sessions` (`SessionID`, `Date`, `UserID`, `TypeID`, `Duration`) VAL
 (112, '2024-12-15', 15, 1, 50.00),
 (113, '2024-12-15', 15, 4, 40.00),
 (114, '2024-12-16', 15, 2, 45.00),
-(115, '2024-12-17', 15, 3, 60.00);
+(115, '2024-12-17', 15, 3, 60.00),
+(116, '2024-12-15', 15, 5, 25.00),
+(117, '2024-12-15', 16, 6, 20.00);
 
 -- --------------------------------------------------------
 
@@ -410,19 +420,19 @@ ALTER TABLE `workouttype`
 -- AUTO_INCREMENT for table `meal`
 --
 ALTER TABLE `meal`
-  MODIFY `MealID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `MealID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
 
 --
 -- AUTO_INCREMENT for table `oneuser`
 --
 ALTER TABLE `oneuser`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `SessionID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `SessionID` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- Constraints for dumped tables

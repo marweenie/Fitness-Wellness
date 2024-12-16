@@ -1,19 +1,23 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f2f5;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 .login-container {
     background-color: white;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 300px;
+    margin: 20px;
 }
 
 #loginForm, #signupForm {
@@ -26,6 +30,7 @@ input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 button {
@@ -35,6 +40,8 @@ button {
     padding: 10px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -50,6 +57,7 @@ button:hover {
     margin-top: 10px;
     text-align: left;
 }
+
 .registerlink {
     font-family: Arial, sans-serif;
     font-size: 14px;
@@ -68,4 +76,16 @@ button:hover {
 .registerlink a:hover {
     color: #45a049;
     text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+    .login-container {
+        padding: 20px;
+        width: 95%;
+    }
+
+    input, button {
+        font-size: 12px;
+        padding: 8px;
+    }
 }

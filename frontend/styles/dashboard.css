@@ -10,7 +10,7 @@
     --success-color: #30D158;
     --error-color: #ff3a30a4;
 
-    --content-min-height: 25rem;    /* Ensures consistent content height */
+    --content-min-height: 25rem;    
 }
 
 * {
@@ -28,7 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    overflow: hidden;
+    overflow-y: auto;
 
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/gymback.jpg');
     background-repeat: repeat;
@@ -46,7 +46,6 @@ body {
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease;
-    overflow: hidden;
 }
 
 .tabs {
