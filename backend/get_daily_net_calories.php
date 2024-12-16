@@ -1,4 +1,5 @@
 <?php
+// Marwa Chbeir & Michael Sepsey
 // database connection
 $mysqli = new mysqli("localhost", "root", "", "fitnesswellnessdb");
 
@@ -14,7 +15,7 @@ $response = [];
 if (isset($_SESSION['user_id'])) {
     $userid = $_SESSION['user_id'];
     
-    // Get total calories consumed today
+    // get total calories consumed today
     $today = date('Y-m-d'); //todays date
     $queryConsumed = "SELECT SUM(Calories) AS totalConsumed FROM meal WHERE UserID = '$userid' AND Date = '$today'";
     $resultConsumed = $mysqli->query($queryConsumed);
@@ -26,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
         $totalConsumed = 0;
     }
 
-    // Get total calories burned today
+    // get total calories burned today
     $queryBurned = "
         SELECT SUM((w.MET * 3.5 * w.ExerciseMultiplier * (o.Weight / 200)) * s.Duration) AS totalBurned
         FROM sessions s 

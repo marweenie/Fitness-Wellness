@@ -1,5 +1,5 @@
 <?php
-
+// Marwa Chbeir & Michael Sepsey
 // database connection
 $mysqli = new mysqli("localhost", "root", "", "fitnesswellnessdb");
 
@@ -8,24 +8,22 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Return JSON response header
 header('Content-Type: application/json');
 
-// Initialize response array
 $response = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userid = $mysqli->real_escape_string($_POST['userid']);
     $password = $mysqli->real_escape_string($_POST['password']);
 
-    // Query to select the user by UserID (PK)
+    // query to select the user by UserID (PK)
     $query = "SELECT * FROM oneuser WHERE UserID = '$userid'";
     $result = $mysqli->query($query);
 
     if ($result && $result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // Verify the password
+        // verify  password
         if (md5($password) === $user['UserPW']) {
             session_start();
             $_SESSION['user_id'] = $user['UserID'];
@@ -56,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Close db
 $mysqli->close();
 
-// Output the response and exit
 echo json_encode($response);
 exit();
 ?>

@@ -1,3 +1,5 @@
+// Marwa Chbeir & Michael Sepsey
+
 document.getElementById('signupForm').addEventListener('submit', function(e) {
     e.preventDefault();
 

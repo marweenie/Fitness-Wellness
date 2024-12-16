@@ -1,3 +1,4 @@
+// Marwa Chbeir & Michael Sepsey
 document.addEventListener('DOMContentLoaded', function() {
     // fetch user info to display
     fetch('../backend/get_user_info.php')
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching meals:', error));
         
-    // fetch  net caloric intake / day
+    // fetch net caloric intake / day
     fetch('../backend/get_daily_net_calories.php')
     .then(response => response.json())
     .then(data => {
@@ -67,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .catch(error => console.error('Error fetching daily net calories:', error));
 
 
-    // fetch  past caloric intake / day
+    // fetch past caloric intake / day
     fetch('../backend/get_past_net_calories.php')
     .then(response => response.json())
     .then(data => {
@@ -188,7 +189,7 @@ function displayMeals(meals) {
 
 function displayPastNetCalories(netCalories) {
     if (netCalories.length === 0) {
-        // Handle no net calorie data case
+        // handles no net calorie data case
         console.log('No past net calorie data available.');
         return;
     }
@@ -205,6 +206,6 @@ function displayPastNetCalories(netCalories) {
     });
 
     var pastCaloriesDiv = document.getElementById('past-calories-list');
-    pastCaloriesDiv.innerHTML = ''; // Clear any existing content
+    pastCaloriesDiv.innerHTML = ''; // clear any existing content
     pastCaloriesDiv.appendChild(pastCaloriesList);
 }

@@ -1,4 +1,6 @@
 <?php
+// Marwa Chbeir & Michael Sepsey
+
 $mysqli = new mysqli("localhost", "root", "", "fitnesswellnessdb");
 
 // Check connection

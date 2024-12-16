@@ -1,5 +1,5 @@
 <?php
-
+// Marwa Chbeir & Michael Sepsey
 // database connection
 $mysqli = new mysqli("localhost", "root", "", "fitnesswellnessdb");
 
@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $mysqli->real_escape_string($_POST['password']);
     $confirmpassword = $mysqli->real_escape_string($_POST['confirmpassword']);
 
-    // Check if the passwords match
+    // Check if passwords match
     if ($password !== $confirmpassword) {
         $response['error'] = 'Passwords do not match';
     } else {
         // Hash the password
         $hashedPassword = md5($password);
 
-        // Insert new user into the database
+        // put new user into DB
         $query = "INSERT INTO oneuser (Name, Age, Gender, Height, Weight, UserPW) VALUES ('$name', '$age', '$gender', '$height', '$weight', '$hashedPassword')";
 
         if ($mysqli->query($query) === TRUE) {
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $response['error'] = 'Invalid request method';
 }
 
-// Close the database 
+// Close 
 $mysqli->close();
 
 echo json_encode($response);
